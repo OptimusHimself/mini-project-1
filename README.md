@@ -57,7 +57,7 @@ Repository
 https://github.com/OptimusHimself/mini-project-1
 
 Video
-[Link to video] (to be added)!!这里需要上传视频链接
+https://share.weiyun.com/4t5Oc1Gs
 
 Report
 COMP3006J_21_22207668.pdf

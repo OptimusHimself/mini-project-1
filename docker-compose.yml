@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  data-service:
+    build: ./data
+    volumes:
+      - ./data:/data
+    ports:
+      - "5002:5002"
+
+  workflow-service:
+    build: ./workflow
+    environment:
+      - DATA_SERVICE_URL=http://data-service:5002
+      - SUBMISSION_FUNCTION_URL=https://submissfunction-toofmywica.cn-hangzhou.fcapp.run
+      - PROCESSING_FUNCTION_URL=https://processfunction-csckxymeyv.cn-hangzhou.fcapp.run
+      - RESULT_UPDATE_FUNCTION_URL=https://result-function-rrhufjmcil.cn-hangzhou.fcapp.run
+    depends_on:
+      - data-service
+    ports:
+      - "5001:5001"
+
+  presentation-service:
+    build: ./presentation
+    environment:
+      - WORKFLOW_URL=http://workflow-service:5001
+    depends_on:
+      - workflow-service
+    ports:
+      - "80:80"
